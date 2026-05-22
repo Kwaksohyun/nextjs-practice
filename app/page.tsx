@@ -57,8 +57,9 @@ function HomeContent() {
   const createSessionFromCafe24 = async () => {
     try {
       setSessionCreating(true);
-      const apiUrl = `/api/auth/session-from-cafe24?${searchParams.toString()}`;
-      window.location.href = apiUrl;
+      // HMAC은 쿼리 순서·인코딩이 그대로여야 함 — searchParams.toString() 사용 금지
+      const query = window.location.search;
+      window.location.href = `/api/auth/session-from-cafe24${query}`;
     } catch (e) {
       console.error(e);
       setSessionCreating(false);

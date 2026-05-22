@@ -36,11 +36,12 @@ export const config = {
     appSchema: process.env.SUPABASE_APP_SCHEMA || "cafe24_app",
   },
   cafe24: {
-    clientId: process.env.CAFE24_CLIENT_ID || "",
-    clientSecret: process.env.CAFE24_CLIENT_SECRET || "",
-    redirectUri: process.env.CAFE24_REDIRECT_URI || "",
-    apiVersion: process.env.CAFE24_API_VERSION || "2025-12-01",
-    baseUrl: process.env.CAFE24_BASE_URL || "cafe24api.com",
+    clientId: (process.env.CAFE24_CLIENT_ID || "").trim(),
+    clientSecret: (process.env.CAFE24_CLIENT_SECRET || "").trim(),
+    serviceKey: (process.env.CAFE24_SERVICE_KEY || "").trim(),
+    redirectUri: (process.env.CAFE24_REDIRECT_URI || "").trim(),
+    apiVersion: (process.env.CAFE24_API_VERSION || "2025-12-01").trim(),
+    baseUrl: (process.env.CAFE24_BASE_URL || "cafe24api.com").trim(),
   },
   app: {
     url: process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000",
