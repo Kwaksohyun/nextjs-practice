@@ -12,11 +12,14 @@ export function getRawQueryString(requestUrl: string): string {
   return requestUrl.slice(q + 1);
 }
 
+/**
+ * 카페24 공식 예제와 동일:
+ * plain_query = query_string.substring(0, query_string.lastIndexOf("&"))
+ */
 export function extractPlainQuery(rawQuery: string): string | null {
-  const marker = "&hmac=";
-  const idx = rawQuery.lastIndexOf(marker);
-  if (idx === -1) return null;
-  return rawQuery.substring(0, idx);
+  const lastAmp = rawQuery.lastIndexOf("&");
+  if (lastAmp === -1) return null;
+  return rawQuery.substring(0, lastAmp);
 }
 
 export function extractHmacParam(rawQuery: string): string | null {
@@ -49,7 +52,7 @@ function timingSafeEqual(a: string, b: string): boolean {
   return crypto.timingSafeEqual(bufA, bufB);
 }
 
-/** Client Secret 또는 Service Key 순서로 검증 시도 */
+/** Client Secret으로 검증 (공식: AppEnv.SECRET_KEY = Client Secret) */
 export function verifyCafe24AppHmac(
   requestUrl: string,
   secretKeys: string[],

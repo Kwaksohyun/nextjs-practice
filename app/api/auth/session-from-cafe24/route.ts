@@ -42,10 +42,8 @@ export async function GET(req: NextRequest) {
     }
 
     if (hmac) {
-      const secrets = [
-        config.cafe24.clientSecret,
-        config.cafe24.serviceKey,
-      ].filter(Boolean);
+      // 앱 실행 URL HMAC = 개발자센터의 Client Secret (Service Key 아님)
+      const secrets = [config.cafe24.clientSecret].filter(Boolean);
 
       if (secrets.length === 0) {
         return NextResponse.json(
@@ -69,6 +67,8 @@ export async function GET(req: NextRequest) {
             success: false,
             error: "Invalid HMAC",
             code: "INVALID_HMAC",
+            hint:
+              "카페24 개발자센터 > 해당 앱 > 개발 정보의 Client Secret이 Vercel CAFE24_CLIENT_SECRET과 동일한지 확인하세요. 환경변수 변경 후 재배포하고, 카페24에서 앱을 다시 실행해 새 URL로 접속하세요.",
           },
           { status: 401 },
         );
