@@ -1,31 +1,44 @@
-import Image from "next/image";
-import Link from "next/link";
+import { Suspense } from "react";
+import PostCard from "@/components/blog/PostCard";
+import CategoryFilter from "@/components/blog/CategoryFilter";
+import { getCategories, getPosts } from "@/lib/data/blog";
+import homeStyles from "@/styles/modules/blog-home.module.css";
 
-export default function Home() {
+type Props = {
+  searchParams: Promise<{ category?: string }>;
+};
+
+export default async function HomePage({ searchParams }: Props) {
+  const { category } = await searchParams;
+  const [categories, posts] = await Promise.all([
+    getCategories(),
+    getPosts(category),
+  ]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            KMENT CORPORATION
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            창의적이고, 실용적인 디자인. <br/>
-            케이먼트 코퍼레이션과 함께 하세요
-          </p>
+    <>
+      <section className={homeStyles.hero}>
+        <h1 className={homeStyles.title}>개발 블로그</h1>
+        <p className={homeStyles.subtitle}>
+          Next.js와 Supabase로 만든 개인 개발 기록
+        </p>
+      </section>
 
+      <Suspense fallback={<div className={homeStyles.categoryRow}>로딩...</div>}>
+        <CategoryFilter categories={categories} />
+      </Suspense>
+
+      {posts.length === 0 ? (
+        <div className={homeStyles.empty}>
+          아직 글이 없습니다. 로그인 후 첫 글을 작성해보세요.
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <Link className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-              href={"/products"}>
-                PRODUCT
-          </Link>
-          <Link className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-              href={"/about"}>
-                ABOUT
-          </Link>
+      ) : (
+        <div className={homeStyles.list}>
+          {posts.map((post) => (
+            <PostCard key={post.id} post={post} />
+          ))}
         </div>
-      </main>
-    </div>
+      )}
+    </>
   );
 }

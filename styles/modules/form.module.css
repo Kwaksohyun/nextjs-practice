@@ -1,0 +1,211 @@
+.pageTitle {
+  margin: 0 0 0.35rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.pageDesc {
+  margin: 0 0 1.75rem;
+  color: #5c6370;
+}
+
+.form {
+  background: #fff;
+  border: 1px solid #e8ebf0;
+  border-radius: 14px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #495057;
+}
+
+.field input,
+.field textarea,
+.field select {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border: 1px solid #dde2ec;
+  border-radius: 8px;
+}
+
+.field textarea {
+  min-height: 280px;
+  resize: vertical;
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+.field input:focus,
+.field textarea:focus,
+.field select:focus {
+  outline: none;
+  border-color: #3b5bdb;
+  box-shadow: 0 0 0 3px rgba(59, 91, 219, 0.12);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.error {
+  color: #c92a2a;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.hint {
+  font-size: 0.8rem;
+  color: #868e96;
+  margin-top: 0.25rem;
+}
+
+.myPosts {
+  margin-bottom: 2rem;
+  background: #fff;
+  border: 1px solid #e8ebf0;
+  border-radius: 14px;
+  padding: 1.25rem 1.35rem;
+}
+
+.myPostsTitle {
+  margin: 0 0 1rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.myPostsEmpty {
+  margin: 0 0 2rem;
+  color: #868e96;
+  font-size: 0.95rem;
+}
+
+.myPostsList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.myPostsItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0;
+  border-top: 1px solid #f1f3f5;
+}
+
+.myPostsItem:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.myPostsInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.myPostsName {
+  display: block;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.myPostsMeta {
+  font-size: 0.82rem;
+  color: #868e96;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.draftBadge {
+  background: #fff3bf;
+  color: #e67700;
+  padding: 0.1rem 0.45rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.myPostsActions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.myPostsLink,
+.myPostsLinkPrimary {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+}
+
+.myPostsLink {
+  color: #5c6370;
+  border: 1px solid #dde2ec;
+}
+
+.myPostsLink:hover {
+  background: #f8f9fb;
+}
+
+.myPostsLinkPrimary {
+  color: #fff;
+  background: #3b5bdb;
+}
+
+.myPostsLinkPrimary:hover {
+  background: #364fc7;
+}
+
+.myPostsLinkDanger {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.65rem;
+  border-radius: 6px;
+  border: 1px solid #ffc9c9;
+  background: #fff;
+  color: #c92a2a;
+  cursor: pointer;
+}
+
+.myPostsLinkDanger:hover:not(:disabled) {
+  background: #fff5f5;
+}
+
+.myPostsLinkDanger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.deleteError {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: #c92a2a;
+}
