@@ -40,3 +40,4 @@ npm run dev
 ```
 
 수동 OAuth: http://localhost:3000/authorize
+# testtest2
